@@ -1,0 +1,3 @@
+# Compaction backups (session-specific, not shared)
+.claude/compaction-backups/*.jsonl
+.claude/compaction-backups/*_recovery.md
