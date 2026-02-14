@@ -40,7 +40,29 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Before stopping, verify: (1) All implementation matches the spec. (2) Self-review has been performed on any code changes. (3) All lint/test/build checks pass (if applicable). If any check fails, fix the issue instead of stopping."
+            "prompt": "Before stopping, verify ALL of the following (Superpowers mode is active): (1) If code was written, tests exist and ALL pass — you must have RUN them, not just assumed they pass. (2) If code was modified, self-review has been performed using the reviewer agent or self-review skill. (3) All lint/typecheck/build checks pass (if applicable). (4) No debug code, console.logs, TODOs, or incomplete implementations remain. (5) Changes match the original spec/requirements. If ANY check fails or was not performed, do NOT stop. Fix the issue or run the missing verification step first."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash(git commit *)",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Before committing, verify: (1) All tests have been run and pass. (2) Self-review has been completed. (3) git diff shows only intentional changes — no debug code, no commented-out code, no leftover artifacts. (4) The commit message accurately describes the changes. If any check fails, block the commit and fix the issue first."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash(npm test *)|Bash(npx test *)|Bash(npm run test *)|Bash(npx jest *)|Bash(npx vitest *)",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Test results have been returned. Analyze them carefully: (1) If ANY test fails, do NOT proceed with other tasks. Debug the failure systematically using the verification.md protocol. (2) If all tests pass, confirm this explicitly. (3) Never claim tests pass if the output shows failures. (4) If the test command itself fails (not the tests), fix the test infrastructure first."
           }
         ]
       }
