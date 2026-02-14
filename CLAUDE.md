@@ -13,6 +13,10 @@
 4. **Implement against specs** — Code must satisfy the written specification, nothing more.
 5. **Self-review before presenting** — Review your own output for correctness, style, and completeness. Fix issues silently.
 
+### Autonomous Execution After Requirements
+
+Once requirements are confirmed by the user, proceed autonomously through all remaining phases (design → implementation → review → testing) without waiting for intermediate approval. At each review checkpoint, evaluate overall quality on a **10-point scale** and iterate until scoring **9 or above**. Only present the final result to the user.
+
 ## Planning Rules
 
 Every plan MUST include:
