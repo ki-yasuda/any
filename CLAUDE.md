@@ -63,6 +63,29 @@ When starting a new project or major feature:
 5. Set up testing strategy and framework
 6. Write tests before implementation
 
+## MCP Servers
+
+This project uses the following MCP servers (configured in `.mcp.json`):
+
+| Server | Purpose | Usage |
+|--------|---------|-------|
+| **Context7** | 最新ドキュメント自動注入 | プロンプトに `use context7` を追加してライブラリの最新ドキュメントを参照 |
+| **Playwright** | ブラウザテスト・スクリーンショット | E2Eテストやスクリーンショット取得に使用 |
+| **Memory** | セッション間のコンテキスト永続化 | 重要な決定事項や学習内容を `memory` に保存して次回セッションで活用 |
+
+### Memory の使い方
+
+- 重要なアーキテクチャ決定をしたら Memory に保存する
+- プロジェクト固有の規約や注意点を記録する
+- セッション開始時に Memory から過去のコンテキストを読み込む
+
+## Context Saving（コンテキスト節約）
+
+- **調査タスクはサブエージェントに委任する** — `researcher`, `planner` 等のエージェントに調査を任せ、メインのコンテキストを節約する
+- **並列実行を活用する** — 独立したタスクは Task ツールで並列に実行する
+- **Context7 を活用する** — ライブラリのドキュメントを直接貼り付けず、Context7 MCP 経由で必要な部分だけ参照する
+- **スコープを適切に分割する** — 大きなタスクは小さなサブタスクに分割し、各サブエージェントに委任する
+
 ## Commands
 
 - See `package.json` or project-specific config for build/test/lint commands
